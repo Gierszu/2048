@@ -1,0 +1,56 @@
+﻿  GameState.cpp
+B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:  'argument': conversion from 'double' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:         with
+B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:             T=float
+B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:         ]
+B:\Development Bin\Projects\2048\GameState.cpp(39,60): warning C4244:  'argument': conversion from 'double' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\GameState.cpp(39,60): warning C4244:         with
+B:\Development Bin\Projects\2048\GameState.cpp(39,60): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(39,60): warning C4244:             T=float
+B:\Development Bin\Projects\2048\GameState.cpp(39,60): warning C4244:         ]
+B:\Development Bin\Projects\2048\GameState.cpp(40,206): warning C4244:  'argument': conversion from 'double' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\GameState.cpp(40,206): warning C4244:         with
+B:\Development Bin\Projects\2048\GameState.cpp(40,206): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(40,206): warning C4244:             T=float
+B:\Development Bin\Projects\2048\GameState.cpp(40,206): warning C4244:         ]
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:         with
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:         ]
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:         and
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:             T=float
+B:\Development Bin\Projects\2048\GameState.cpp(83,44): warning C4244:         ]
+  Grid.cpp
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:         with
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:         ]
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:         and
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:         [
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:             T=float
+B:\Development Bin\Projects\2048\GameState.cpp(83,30): warning C4244:         ]
+B:\Development Bin\Projects\2048\Grid.cpp(115,21): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(118,21): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(121,21): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(154,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(169,25): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(183,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(200,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(215,25): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(229,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(246,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(261,25): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(275,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(292,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(307,25): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(321,26): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(335,38): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+B:\Development Bin\Projects\2048\Grid.cpp(393,21): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\Grid.cpp(399,21): warning C4018:  '<': signed/unsigned mismatch
+  Generating Code...
+B:\Development Bin\Projects\2048\Grid.cpp(402,21): warning C4018:  '<': signed/unsigned mismatch
+  2048.vcxproj -> B:\Development Bin\Projects\2048\Debug\2048.exe

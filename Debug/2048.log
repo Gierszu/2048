@@ -1,4 +1,11 @@
-﻿  GameState.cpp
+﻿  AssetManager.cpp
+B:\Development Bin\Projects\2048\AssetManager.cpp(56,14): warning C4244:  'initializing': conversion from 'float' to 'int', possible loss of data
+B:\Development Bin\Projects\2048\AssetManager.cpp(60,42): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  FileManager.cpp
+B:\Development Bin\Projects\2048\AssetManager.cpp(71,33): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  Game.cpp
+  GameState.cpp
+B:\Development Bin\Projects\2048\FileManager.cpp(51,21): warning C4018:  '<': signed/unsigned mismatch
 B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:  'argument': conversion from 'double' to 'T', possible loss of data
 B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:         with
 B:\Development Bin\Projects\2048\GameState.cpp(39,156): warning C4244:         [
@@ -51,6 +58,155 @@ B:\Development Bin\Projects\2048\Grid.cpp(321,26): warning C4018:  '<': signed/u
 B:\Development Bin\Projects\2048\Grid.cpp(335,38): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 B:\Development Bin\Projects\2048\Grid.cpp(393,21): warning C4018:  '<': signed/unsigned mismatch
 B:\Development Bin\Projects\2048\Grid.cpp(399,21): warning C4018:  '<': signed/unsigned mismatch
-  Generating Code...
+  InputManager.cpp
 B:\Development Bin\Projects\2048\Grid.cpp(402,21): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(6,212): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(6,180): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(6,114): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(6,49): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(15,211): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(15,179): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(15,113): warning C4244:         ]
+  main.cpp
+  MainMenuState.cpp
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:         with
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:             T=float
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:         ]
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:         and
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:         [
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:             T=int
+B:\Development Bin\Projects\2048\InputManager.cpp(15,48): warning C4244:         ]
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:         with
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:         [
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:         ]
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:         and
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:         [
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:             T=float
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,44): warning C4244:         ]
+  PauseState.cpp
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:         with
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:         [
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:         ]
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:         and
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:         [
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:             T=float
+B:\Development Bin\Projects\2048\MainMenuState.cpp(47,30): warning C4244:         ]
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:         with
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:         [
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:         ]
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:         and
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:         [
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:             T=float
+B:\Development Bin\Projects\2048\PauseState.cpp(43,44): warning C4244:         ]
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:         with
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:         [
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:         ]
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:         and
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:         [
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:             T=float
+B:\Development Bin\Projects\2048\PauseState.cpp(43,30): warning C4244:         ]
+  SplashState.cpp
+B:\Development Bin\Projects\2048\PauseState.cpp(208,21): warning C4018:  '<': signed/unsigned mismatch
+B:\Development Bin\Projects\2048\SplashState.cpp(17,53): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+B:\Development Bin\Projects\2048\SplashState.cpp(17,53): warning C4244:         with
+B:\Development Bin\Projects\2048\SplashState.cpp(17,53): warning C4244:         [
+B:\Development Bin\Projects\2048\SplashState.cpp(17,53): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\SplashState.cpp(17,53): warning C4244:         ]
+B:\Development Bin\Projects\2048\SplashState.cpp(17,34): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+B:\Development Bin\Projects\2048\SplashState.cpp(17,34): warning C4244:         with
+B:\Development Bin\Projects\2048\SplashState.cpp(17,34): warning C4244:         [
+B:\Development Bin\Projects\2048\SplashState.cpp(17,34): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\SplashState.cpp(17,34): warning C4244:         ]
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:         with
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:         [
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:         ]
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:         and
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:         [
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:             T=float
+B:\Development Bin\Projects\2048\SplashState.cpp(19,44): warning C4244:         ]
+  StateMachine.cpp
+  TextBox.cpp
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:         with
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:         [
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:             T=unsigned int
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:         ]
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:         and
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:         [
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:             T=float
+B:\Development Bin\Projects\2048\SplashState.cpp(19,30): warning C4244:         ]
+  Generating Code...
+B:\Development Bin\Projects\2048\TextBox.cpp(64,33): warning C4244:  'argument': conversion from 'const _Ty' to 'unsigned int', possible loss of data
+B:\Development Bin\Projects\2048\TextBox.cpp(64,33): warning C4244:         with
+B:\Development Bin\Projects\2048\TextBox.cpp(64,33): warning C4244:         [
+B:\Development Bin\Projects\2048\TextBox.cpp(64,33): warning C4244:             _Ty=float
+B:\Development Bin\Projects\2048\TextBox.cpp(64,33): warning C4244:         ]
   2048.vcxproj -> B:\Development Bin\Projects\2048\Debug\2048.exe

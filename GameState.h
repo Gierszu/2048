@@ -8,6 +8,7 @@
 
 #include "Grid.h"
 #include "TextBox.h"
+#include "ButtonBox.h"
 
 namespace game {
 	class GameState : public State {
@@ -19,6 +20,7 @@ namespace game {
 		void update(float frameDif);
 		void draw(float frameDif);
 		void resume();
+		void checkIfOver();
 
 		void updateScore();
 		void updateHighscore();
@@ -33,6 +35,7 @@ namespace game {
 		
 		TextBox _scoreBoard;
 		TextBox _highscoreBoard;
+		ButtonBox _overBox;
 		sf::Sprite _title;
 
 		sf::RectangleShape _fade;
@@ -43,6 +46,7 @@ namespace game {
 		int _opacity;
 
 		int _score;
+		int _prevScore;
 		int _highscore;
 
 		float _pauseScale;
@@ -50,7 +54,7 @@ namespace game {
 
 		sf::Clock _clock;
 		sf::Clock _fadeClock;
-		sf::Clock _moveClock;
+		sf::Clock _clickClock;
 
 		Grid _grid;
 	};

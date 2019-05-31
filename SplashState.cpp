@@ -60,8 +60,12 @@ namespace game {
 			// Load text boxes
 			this->_data->assets.loadTexture("Text Box", TEXT_BOX);
 
-			//Load fonts
+			// Load fonts
 			this->_data->assets.loadFont("Calm Font", CALM_FONT);
+
+			// Load Over boxes
+			this->_data->assets.loadTexture("Lose Box", LOSE_BOX);
+			this->_data->assets.loadTexture("Win Box", WIN_BOX);
 		}
 
 		// Load pause things

@@ -59,7 +59,7 @@ namespace game {
 		this->_tileSize = this->_gridSize / number;
 		this->_numberOfTiles = number;
 		this->_gridArray = array;
-		this->_prevArray = array;
+		this->_prevArray = prev;
 
 		// Set textures	
 		this->_body.setTexture(this->_data->assets.getTexture("Back"));
@@ -140,7 +140,7 @@ namespace game {
 		return false;
 	}
 
-	void Grid::setMove(Direction dir, std::vector<std::vector<int>>& array, std::vector<std::vector<int>>& prev, std::vector<Tile>& tiles) {
+	void Grid::setMove(Direction dir, std::vector<std::vector<int>>& array, std::vector<std::vector<int>>& prev, std::vector<Tile>& tiles, bool isAdding) {
 		prev = array;
 
 		switch (dir) {
@@ -164,7 +164,7 @@ namespace game {
 				for (int y = 0; y < _numberOfTiles; y++) {
 					if (x + 1 < _numberOfTiles && array[y][x + 1] == array[y][x] && array[y][x] != 0) {
 						array[y][x] += array[y][x + 1];
-						addToScore(array[y][x]);
+						if (isAdding) { addToScore(array[y][x]); }
 						array[y][x + 1] = 0;
 						for (int j = 0; j < tiles.size(); j++) {
 							if (tiles[j].newPos == sf::Vector2i(x + 1, y)) {
@@ -210,7 +210,7 @@ namespace game {
 				for (int y = 0; y < _numberOfTiles; y++) {
 					if (x - 1 >= 0 && array[y][x - 1] == array[y][x] && array[y][x] != 0) {
 						array[y][x] += array[y][x - 1];
-						addToScore(array[y][x]);
+						if (isAdding) { addToScore(array[y][x]); }
 						array[y][x - 1] = 0;
 						for (int j = 0; j < tiles.size(); j++) {
 							if (tiles[j].newPos == sf::Vector2i(x - 1, y)) {
@@ -256,7 +256,7 @@ namespace game {
 				for (int x = 0; x < _numberOfTiles; x++) {
 					if (y + 1 < _numberOfTiles && array[y + 1][x] == array[y][x] && array[y][x] != 0) {
 						array[y][x] += array[y + 1][x];
-						addToScore(array[y][x]);
+						if (isAdding) { addToScore(array[y][x]); }
 						array[y + 1][x] = 0;
 						for (int j = 0; j < tiles.size(); j++) {
 							if (tiles[j].newPos == sf::Vector2i(x, y + 1)) {
@@ -302,7 +302,7 @@ namespace game {
 				for (int x = 0; x < _numberOfTiles; x++) {
 					if (y - 1 >= 0 && array[y - 1][x] == array[y][x] && array[y][x] != 0) {
 						array[y][x] += array[y - 1][x];
-						addToScore(array[y][x]);
+						if (isAdding) { addToScore(array[y][x]); }
 						array[y - 1][x] = 0;
 						for (int j = 0; j < tiles.size(); j++) {
 							if (tiles[j].newPos == sf::Vector2i(x, y - 1)) {
@@ -375,6 +375,18 @@ namespace game {
 	}
 
 	void Grid::animate(int div) {
+		// Spawn tiles
+		for (int i = 0; i < _spawnedTiles.size(); i++) {
+			_spawnedTiles[i].spawnTile(div);
+		}
+
+		// Move tiles
+		for (int i = 0; i < _tiles.size(); i++) {
+			_tiles[i].move(div);
+		}
+
+
+		/*
 		std::vector<std::thread> threads;
 
 		// Spawn tiles
@@ -393,6 +405,7 @@ namespace game {
 		for (int i = 0; i < threads.size(); i++) {
 			threads[i].join();
 		}
+		*/
 	}
 
 	void Grid::moveToTiles() {
@@ -409,8 +422,7 @@ namespace game {
 	}
 
 	void Grid::execute(Direction dir) {
-		if (!checkIfPossible(dir)) { return; }
-		this->setMove(dir, _gridArray, _prevArray, _tiles);
+		this->setMove(dir, _gridArray, _prevArray, _tiles, true);
 		this->spawnTile();
 	}
 
@@ -435,7 +447,17 @@ namespace game {
 
 	void Grid::addToScore(int value) {
 		score += value;
-		std::cout << "Adding to score.\n";
+	}
+
+	bool Grid::isThere2048() {
+		for (int y = 0; y < _numberOfTiles; y++) {
+			for (int x = 0; x < _numberOfTiles; x++) {
+				if (_gridArray[y][x] == 2048) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -61,7 +61,7 @@ namespace game {
 		void init(GameDataPtr data, sf::Vector2f pos, float size, int number, std::vector<std::vector<int>> array, std::vector<std::vector<int>> prev);
 		void initTiles();
 
-		void setMove(Direction dir, std::vector<std::vector<int>>& array, std::vector<std::vector<int>>& prev, std::vector<Tile>& tiles);
+		void setMove(Direction dir, std::vector<std::vector<int>>& array, std::vector<std::vector<int>>& prev, std::vector<Tile>& tiles, bool isAdding = false);
 		bool checkIfPossible(Direction dir);
 		void setTiles();
 		void spawnTile();
@@ -71,6 +71,7 @@ namespace game {
 		void setArrToPrev();
 		void moveToTiles();
 		bool isArrayEmpty();
+		bool isThere2048();
 		void addToScore(int value);
 		std::vector<std::vector<int>> getArray();
 		std::vector<std::vector<int>> getPrev();

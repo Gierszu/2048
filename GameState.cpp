@@ -1,7 +1,7 @@
 #include "GameState.h"
 #include "PauseState.h"
 #include "DEFINITIONS.h"
-//#include "GameOverState.h"
+#include "MainMenuState.h"
 
 #include <sstream>
 #include <iostream>
@@ -48,7 +48,8 @@ namespace game {
 		_highscoreBoard.changeTitle("Highscore");
 		_highscoreBoard.changeText(std::to_string(this->_data->files.readSingleFile("res/data/Highscore.txt")));
 		_highscore = this->_data->files.readSingleFile("res/data/Highscore.txt");
-		_score = this->_data->files.readSingleFile("res/data/Score.txt");
+		_score = this->_data->files.readFile("res/data/Score.txt")[0];
+		_prevScore = this->_data->files.readFile("res/data/Score.txt")[1];
 
 		// Initialize grid
 		_numberOfTiles = 4;
@@ -92,17 +93,22 @@ namespace game {
 				_grid.animate(20);
 				this->update(1.0f / 60.0f);
 				this->draw(1.0f / 60.0f);
-				Sleep(100 / 20);
+				Sleep(1 / 20);
 			}
 		}
 		_grid.addToScore(_score);
 
 		_grid.moveToTiles();
 		_grid.setTiles();
+		this->checkIfOver();
 
 	}
 
 	void GameState::handleInput() {
+		if (_gameState == STATE_PAUSED) {
+			_gameState = _overBox.handleInput();
+		}
+		
 		sf::Event event;
 		while (this->_data->window.pollEvent(event)) {
 			switch (event.type) {
@@ -119,12 +125,18 @@ namespace game {
 				break;
 
 			case sf::Event::EventType::MouseButtonReleased:
-				if (sf::Mouse::Left == event.mouseButton.button) {
+				if (sf::Mouse::Left == event.mouseButton.button && _gameState == STATE_PLAYING) {
 					// Prev button released
 					if (this->_data->input.isMouseOver(this->_prevButton, this->_data->window)) {
+						_grid.addToScore(_prevScore - _score);
+						_score = _prevScore;
 						_grid.setArrToPrev();
 						_grid.moveToTiles();
 						_grid.setTiles();
+
+						this->updateScore();
+						this->updateHighscore();
+						this->updateFiles();
 					}
 
 					// Pause button released
@@ -149,14 +161,19 @@ namespace game {
 				break;
 			case sf::Event::EventType::KeyPressed:
 				// Keyboard left
-				if (sf::Keyboard::Left == event.key.code && _grid.checkIfPossible(Direction::LEFT)) {
+				if (sf::Keyboard::Left == event.key.code && _grid.checkIfPossible(Direction::LEFT) && _gameState == STATE_PLAYING) {
+					_prevScore = _score;
 					_grid.execute(Direction::LEFT);
 
-					for (int i = 0; i < 20; i++) {
-						_grid.animate(20);
+					sf::Clock clock;
+					for (int i = 0; i < 10; i++) {
+						_grid.animate(10);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
-						Sleep(100 / 20);
+						float time = clock.getElapsedTime().asMilliseconds();
+						if (time < (100 / 10)) {
+							Sleep((100 - time) / 10);
+						}
 					}
 
 					_grid.moveToTiles();
@@ -164,17 +181,24 @@ namespace game {
 					this->updateScore();
 					this->updateHighscore();
 					this->updateFiles();
+					this->checkIfOver();
 				}
 
 				// Keyboard right
-				if (sf::Keyboard::Right == event.key.code && _grid.checkIfPossible(Direction::RIGHT)) {
+				if (sf::Keyboard::Right == event.key.code && _grid.checkIfPossible(Direction::RIGHT) && _gameState == STATE_PLAYING) {
+					_prevScore = _score;
 					_grid.execute(Direction::RIGHT);
 
-					for (int i = 0; i < 20; i++) {
-						_grid.animate(20);
+					sf::Clock clock;
+					for (int i = 0; i < 10; i++) {
+						clock.restart();
+						_grid.animate(10);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
-						Sleep(100 / 20);
+						float time = clock.getElapsedTime().asMilliseconds();
+						if (time < (100 / 10)) {
+							Sleep((100 - time) / 10);
+						}
 					}
 
 					_grid.moveToTiles();
@@ -182,17 +206,24 @@ namespace game {
 					this->updateScore();
 					this->updateHighscore();
 					this->updateFiles();
+					this->checkIfOver();
 				}
 
 				// Keyboard up
-				if (sf::Keyboard::Up == event.key.code && _grid.checkIfPossible(Direction::UP)) {
+				if (sf::Keyboard::Up == event.key.code && _grid.checkIfPossible(Direction::UP) && _gameState == STATE_PLAYING) {
+					_prevScore = _score;
 					_grid.execute(Direction::UP);
 
-					for (int i = 0; i < 20; i++) {
-						_grid.animate(20);
+					sf::Clock clock;
+					for (int i = 0; i < 10; i++) {
+						clock.restart();
+						_grid.animate(10);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
-						Sleep(100 / 20);
+						float time = clock.getElapsedTime().asMilliseconds();
+						if (time < (100 / 10)) {
+							Sleep((100 - time) / 10);
+						}
 					}
 
 					_grid.moveToTiles();
@@ -200,17 +231,24 @@ namespace game {
 					this->updateScore();
 					this->updateHighscore();
 					this->updateFiles();
+					this->checkIfOver();
 				}
 
 				// Keyboard down
-				if (sf::Keyboard::Down == event.key.code && _grid.checkIfPossible(Direction::DOWN)) {
+				if (sf::Keyboard::Down == event.key.code && _grid.checkIfPossible(Direction::DOWN) && _gameState == STATE_PLAYING) {
+					_prevScore = _score;
 					_grid.execute(Direction::DOWN);
-
-					for (int i = 0; i < 20; i++) {
-						_grid.animate(20);
+					
+					sf::Clock clock;
+					for (int i = 0; i < 10; i++) {
+						clock.restart();
+						_grid.animate(10);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
-						Sleep(100 / 20);
+						float time = clock.getElapsedTime().asMilliseconds();
+						if (time < (100 / 10)) {
+							Sleep((100 - time) / 10);
+						}
 					}
 
 					_grid.moveToTiles();
@@ -218,6 +256,7 @@ namespace game {
 					this->updateScore();
 					this->updateHighscore();
 					this->updateFiles();
+					this->checkIfOver();
 				}
 				break;
 			}
@@ -270,6 +309,71 @@ namespace game {
 				this->_prevButton.scale(0.95f, 0.95f);
 			}
 		}
+
+		if (_gameState == STATE_PAUSED) {
+			_overBox.update();
+		}
+
+		if (_gameState == STATE_RESTART) {
+			_gameState = STATE_PLAYING;
+			this->_fadeClock.restart();
+
+			while (this->_opacity < 255) {
+				this->update(1.0f / 60.0f);
+				this->draw(1.0f / 60.0f);
+				if (this->_fadeClock.getElapsedTime().asSeconds() > 0.01 && this->_opacity < 255) {
+					this->_opacity += 5;
+					_fade.setFillColor(sf::Color(0, 0, 0, this->_opacity));
+					this->_fadeClock.restart();
+				}
+				if (this->_opacity == 255) {
+					Sleep(100);
+					this->_data->assets.stopSound("Game Music");
+					// Reset files
+					{
+						// Reset score
+						std::vector<int> vector;
+						for (int i = 0; i < this->_data->files.readFile("res/data/Score.txt").size(); i++) {
+							vector.push_back(0);
+						}
+
+						this->_data->files.writeFile("res/data/Score.txt", vector);
+
+						// Reset array
+						vector.clear();
+						for (int i = 0; i < this->_data->files.readFile("res/data/Array.txt").size(); i++) {
+							vector.push_back(0);
+						}
+
+						this->_data->files.writeFile("res/data/Array.txt", vector);
+
+						// Reset prev
+						this->_data->files.writeFile("res/data/Prev.txt", vector);
+					}
+					this->_data->machine.addState(StatePtr(new GameState(_data)), true);
+				}
+			}
+		}
+
+		if (_gameState == STATE_HOME) {
+			_gameState = STATE_PLAYING;
+			this->_fadeClock.restart();
+
+			while (this->_opacity < 255) {
+				this->update(1.0f / 60.0f);
+				this->draw(1.0f / 60.0f);
+				if (this->_fadeClock.getElapsedTime().asSeconds() > 0.01 && this->_opacity < 255) {
+					this->_opacity += 5;
+					_fade.setFillColor(sf::Color(0, 0, 0, this->_opacity));
+					this->_fadeClock.restart();
+				}
+				if (this->_opacity == 255) {
+					Sleep(100);
+					this->_data->assets.stopSound("Game Music");
+					this->_data->machine.addState(StatePtr(new MainMenuState(_data)), true);
+				}
+			}
+		}
 	}
 
 	void GameState::resume() {
@@ -296,6 +400,10 @@ namespace game {
 		this->_highscoreBoard.draw(this->_data->window);
 		this->_data->window.draw(this->_fade);
 
+		if (_gameState == STATE_PAUSED) {
+			_overBox.draw(this->_data->window);
+		}
+
 		this->_data->window.display();
 	}
 
@@ -315,7 +423,11 @@ namespace game {
 		std::vector<int> output;
 
 		// Update score
-		this->_data->files.writeFile("res/data/Score.txt", _score);
+		std::vector<int> scores;
+		scores.push_back(_score);
+		scores.push_back(_prevScore);
+
+		this->_data->files.writeFile("res/data/Score.txt", scores);
 
 		// Update highscore
 		this->_data->files.writeFile("res/data/Highscore.txt", _highscore);
@@ -333,6 +445,7 @@ namespace game {
 
 		// Update prev
 		vector.clear();
+		array.clear();
 		array = _grid.getPrev();
 		for (int y = 0; y < _numberOfTiles; y++) {
 			for (int x = 0; x < _numberOfTiles; x++) {
@@ -343,424 +456,15 @@ namespace game {
 		this->_data->files.writeFile("res/data/Prev.txt", vector);
 	}
 
-	/*void GameState::initGridBackTiles() {
-		sf::Vector2f size;
-		size.x = this->_gridBack.getGlobalBounds().width / 4.0f;
-		size.y = this->_gridBack.getGlobalBounds().height / 4.0f;
-
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 4; y++) {
-				_gridBackTiles[x][y] = _gridZeroSprite;
-				_gridBackTiles[x][y].setPosition((_gridBack.getPosition().x + (size.x * x) - size.x * 1.5f), (_gridBack.getPosition().y + size.y * y) - size.y * 1.5f);
-				_gridArray[x][y] = 0;
-
-				//Grid tiles
-				_gridTiles[x][y] = _gridZeroSprite;
-				_gridTiles[x][y].setPosition((_gridBack.getPosition().x + (size.x * x) - size.x * 1.5f), (_gridBack.getPosition().y + size.y * y) - size.y * 1.5f);
-			}
-		}
-	}*/
-
-	/*void GameState::moveArray(Direction dir, int array[4][4], int prev[4][4]) {
-
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 4; y++) {
-				prev[x][y] = array[x][y];
-			}
+	void GameState::checkIfOver() {
+		if (_grid.isThere2048()) {
+			_overBox.init(_data, "Win Box");
+			_gameState = STATE_PAUSED;
 		}
 
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 4; y++) {
-				_vectors[x][y].x = 0;
-				_vectors[x][y].y = 0;
-			}
+		else if (!_grid.checkIfPossible(Direction::LEFT) && !_grid.checkIfPossible(Direction::RIGHT) && !_grid.checkIfPossible(Direction::UP) && !_grid.checkIfPossible(Direction::DOWN)) {
+			_overBox.init(_data, "Lose Box");
+			_gameState = STATE_PAUSED;
 		}
-
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 4; y++) {
-				origin[x][y] = 0;
-			}
-		}
-
-		switch (dir) {
-		case Direction::LEFT:
-			for (int x = 0; x < 4; x++) {
-				for (int y = 0; y < 4; y++) {
-					if (x < 0 || y < 0 || x > 3 || y > 3) {}
-					else {
-						if (x - 3 >= 0 && array[x - 3][y] == 0 && array[x][y] != 0) {
-							array[x - 3][y] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = -3;
-							_vectors[x][y].y = 0;
-							origin[x - 3][y] = 3;
-						}
-						else if (x - 2 >= 0 && array[x - 2][y] == 0 && array[x][y] != 0) {
-							array[x - 2][y] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = -2;
-							_vectors[x][y].y = 0;
-							origin[x - 2][y] = 2;
-						}
-						else if (x - 1 >= 0 && array[x - 1][y] == 0 && array[x][y] != 0) {
-							array[x - 1][y] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = -1;
-							_vectors[x][y].y = 0;
-							origin[x - 1][y] = 1;
-						}
-						else {
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 0;
-							origin[x][y] = 0;
-						}
-					}
-				}
-			}
-			for (int x = 0; x < 4; x++) {
-				for (int y = 0; y < 4; y++) {
-					if (x < 0 || y < 0 || x > 3 || y > 3) {}
-					else {
-						if (x + 1 < 4 && array[x + 1][y] == array[x][y] && array[x][y] != 0) {
-							array[x][y] += array[x + 1][y];
-							array[x + 1][y] = 0;
-							_vectors[x + 1 + origin[x + 1][y]][y].x += -1;
-							origin[x + 1 + origin[x + 1][y]][y] += 1;
-							if (x + 2 < 4 && array[x + 2][y] != 0) {
-								array[x + 1][y] = array[x + 2][y];
-								array[x + 2][y] = 0;
-								_vectors[x + 2 + origin[x + 2][y]][y].x += -1;
-								origin[x + 2 + origin[x + 2][y]][y] += 1;
-							}
-							if (x + 3 < 4 && array[x + 3][y] != 0) {
-								array[x + 2][y] = array[x + 3][y];
-								array[x + 3][y] = 0;
-								_vectors[x + 3 + origin[x + 3][y]][y].x += -1;
-								origin[x + 3 + origin[x + 3][y]][y] += 1;
-							}
-						}
-					}
-				}
-			}
-			break;
-		case Direction::RIGHT:
-			for (int x = 3; x >= 0; x--) {
-				for (int y = 0; y < 4; y++) {
-					if (x < 0 || y < 0 || x > 3 || y > 3) {}
-					else {
-						if (x + 3 < 4 && array[x + 3][y] == 0 && array[x][y] != 0) {
-							array[x + 3][y] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 3;
-							_vectors[x][y].y = 0;
-							origin[x + 3][y] = -3;
-						}
-						else if (x + 2 < 4 && array[x + 2][y] == 0 && array[x][y] != 0) {
-							array[x + 2][y] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 2;
-							_vectors[x][y].y = 0;
-							origin[x + 2][y] = -2;
-						}
-						else if (x + 1 < 4 && array[x + 1][y] == 0 && array[x][y] != 0) {
-							array[x + 1][y] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 1;
-							_vectors[x][y].y = 0;
-							origin[x + 1][y] = -1;
-						}
-						else {
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 0;
-						}
-					}
-				}
-			}
-			for (int x = 3; x >= 0; x--) {
-				for (int y = 0; y < 4; y++) {
-					if (x < 0 || y < 0 || x > 3 || y > 3) {}
-					else {
-						if (x - 1 >= 0 && array[x - 1][y] == array[x][y] && array[x][y] != 0) {
-							array[x][y] += array[x - 1][y];
-							array[x - 1][y] = 0;
-							_vectors[x - 1 + origin[x - 1][y]][y].x += 1;
-							origin[x - 1 + origin[x - 1][y]][y] += -1;
-							if (x - 2 >= 0 && array[x - 2][y] != 0) {
-								array[x - 1][y] = array[x - 2][y];
-								array[x - 2][y] = 0;
-								_vectors[x - 2 + origin[x - 2][y]][y].x += 1;
-								origin[x - 2 + origin[x - 2][y]][y] += -1;
-							}
-							if (x - 3 >= 0 && array[x - 3][y] != 0) {
-								array[x - 2][y] = array[x - 3][y];
-								array[x - 3][y] = 0;
-								_vectors[x - 3][y].x += 1;
-								origin[x - 3][y] += -1;
-							}
-							if (array[x][y] == 0) {
-								_vectors[x][y].x = 0;
-								_vectors[x][y].y = 0;
-							}
-						}
-					}
-				}
-			}
-			break;
-		case Direction::UP:
-			for (int y = 0; y < 4; y++) {
-				for (int x = 0; x < 4; x++) {
-					if (y < 0 || x < 0 || y > 3 || x > 3) {}
-					else {
-						if (y - 3 >= 0 && array[x][y - 3] == 0 && array[x][y] != 0) {
-							array[x][y - 3] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = -3;
-							origin[x][y - 3] = 3;
-						}
-						else if (y - 2 >= 0 && array[x][y - 2] == 0 && array[x][y] != 0) {
-							array[x][y - 2] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = -2;
-							origin[x][y - 2] = 2;
-						}
-						else if (y - 1 >= 0 && array[x][y - 1] == 0 && array[x][y] != 0) {
-							array[x][y - 1] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = -1;
-							origin[x][y - 1] = 1;
-						}
-						else {
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 0;
-						}
-					}
-				}
-			}
-			for (int y = 0; y < 4; y++) {
-				for (int x = 0; x < 4; x++) {
-					if (x < 0 || y < 0 || x > 3 || y > 3) {}
-					else {
-						if (y + 1 < 4 && array[x][y + 1] == array[x][y] && array[x][y] != 0) {
-							array[x][y] += array[x][y + 1];
-							array[x][y + 1] = 0;
-							_vectors[x][y + 1 + origin[x][y + 1]].y += -1;
-							origin[x][y + 1 + origin[x][y + 1]] += 1;
-							if (y + 2 < 4 && array[x][y + 2] != 0) {
-								array[x][y + 1] = array[x][y + 2];
-								array[x][y + 2] = 0;
-								_vectors[x][y + 2 + origin[x][y + 2]].y += -1;
-								origin[x][y + 2 + origin[x][y + 2]] += 1;
-							}
-							if (y + 3 < 4 && array[x][y + 3] != 0) {
-								array[x][y + 2] = array[x][y + 3];
-								array[x][y + 3] = 0;
-								_vectors[x][y + 3 + origin[x][y + 3]].y += -1;
-								origin[x][y + 3 + origin[x][y + 3]] += 1;
-							}
-						}
-					}
-				}
-			}
-			break;
-		case Direction::DOWN:
-			for (int y = 3; y >= 0; y--) {
-				for (int x = 0; x < 4; x++) {
-					if (y < 0 || x < 0 || y > 3 || x > 3) {}
-					else {
-						if (y + 3 < 4 && array[x][y + 3] == 0 && array[x][y] != 0) {
-							array[x][y + 3] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 3;
-							origin[x][y + 3] = -3;
-						}
-						else if (y + 2 < 4 && array[x][y + 2] == 0 && array[x][y] != 0) {
-							array[x][y + 2] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 2;
-							origin[x][y + 2] = -2;
-						}
-						else if (y + 1 < 4 && array[x][y + 1] == 0 && array[x][y] != 0) {
-							array[x][y + 1] = array[x][y];
-							array[x][y] = 0;
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 1;
-							origin[x][y + 1] = -1;
-						}
-						else {
-							_vectors[x][y].x = 0;
-							_vectors[x][y].y = 0;
-						}
-					}
-				}
-			}
-			for (int y = 3; y >= 0; y--) {
-				for (int x = 0; x < 4; x++) {
-					if (x < 0 || y < 0 || x > 3 || y > 3) {}
-					else {
-						if (y - 1 >= 0 && array[x][y - 1] == array[x][y] && array[x][y] != 0) {
-							array[x][y] += array[x][y - 1];
-							array[x][y - 1] = 0;
-							_vectors[x][y - 1 + origin[x][y - 1]].y += 1;
-							origin[x][y - 1 + origin[x][y - 1]] += -1;
-							if (y - 2 >= 0 && array[x][y - 2] != 0) {
-								array[x][y - 1] = array[x][y - 2];
-								array[x][y - 2] = 0;
-								_vectors[x][y - 2 + origin[x][y - 2]].y += 1;
-								origin[x][y - 2 + origin[x][y - 2]] += -1;
-							}
-							if (y - 3 >= 0 && array[x][y - 3] != 0) {
-								array[x][y - 2] = array[x][y - 3];
-								array[x][y - 3] = 0;
-								_vectors[x][y - 3].y += 1;
-								origin[x][y - 3] += -1;
-							}
-							if (array[x][y] == 0) {
-								_vectors[x][y].x = 0;
-								_vectors[x][y].y = 0;
-							}
-						}
-					}
-				}
-			}
-			break;
-		}
-	}*/
-
-	/*void GameState::moveTiles() {
-		float time = 150;
-		int times = 10;
-		int counter = times;
-		for (int y = 0; y < 4; y++) {
-			for (int x = 0; x < 4; x++) {
-				std::cout << "| " << _vectors[x][y].x << " : " << _vectors[x][y].y << " |";
-			}
-			std::cout << std::endl;
-		}
-		
-		while (counter) {
-			for (int x = 0; x < 4; x++) {
-				for (int y = 0; y < 4; y++) {
-					float disX = _vectors[x][y].x * this->_gridZeroSprite.getGlobalBounds().width / times;
-					float disY = _vectors[x][y].y * this->_gridZeroSprite.getGlobalBounds().height / times;
-
-					this->_gridTiles[x][y].move(sf::Vector2f(disX, disY));
-				}
-			}
-			this->update(1.0f / 60.0f);
-			this->draw(1.0f / 60.0f);
-			Sleep(time/times);
-			counter--;
-		}
-		std::cout << std::endl;
-	}*/
-
-	/*void GameState::setTiles() {
-		for (int y = 0; y < 4; y++) {
-			for (int x = 0; x < 4; x++) {
-				switch (_gridArray[x][y]) {
-				case 0:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("0"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 0));
-					break;
-				case 2:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("2"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 4:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("4"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 8:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("8"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 16:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("16"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 32:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("32"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 64:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("64"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 128:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("128"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 256:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("256"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 512:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("512"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 1024:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("1024"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				case 2048:
-					this->_gridTiles[x][y].setTexture(this->_data->assets.getTexture("2048"));
-					this->_gridTiles[x][y].setColor(sf::Color(255, 255, 255, 255));
-					break;
-				}
-
-				this->_gridTiles[x][y].setPosition(sf::Vector2f(this->_gridBackTiles[x][y].getPosition().x, this->_gridBackTiles[x][y].getPosition().y));
-			}
-		}
-	}*/
-
-	/*void GameState::checkPlayerHasWon() {
-		
-	}*/
-
-	/*void GameState::spawnTile() {
-		std::default_random_engine RNG(time(NULL));
-		std::uniform_int_distribution<int> tileR(0, 3);
-		std::uniform_real_distribution<float> chance(0, 1);
-
-		int X = tileR(RNG);
-		int Y = tileR(RNG);
-
-		while (!_gridArray[X][Y] == 0) {
-			X = tileR(RNG);
-			Y = tileR(RNG);
-		}
-		if (chance(RNG) > 0.05) { 
-			this->_gridArray[X][Y] = 2;
-		}
-		else { 
-			this->_gridArray[X][Y] = 4;
-		}
-	}*/
-
-	/*bool GameState::checkIfPossible(Direction dir) {
-		int array[4][4], prev[4][4];
-
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 4; y++) {
-				array[x][y] = _gridArray[x][y];
-				prev[x][y] = _prevArray[x][y];
-			}
-		}
-
-		moveArray(dir, array, prev);
-
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 4; y++) {
-				if (array[x][y] != prev[x][y]) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}*/
+	}
 }

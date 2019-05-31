@@ -201,10 +201,15 @@ namespace game {
 
 	void PauseState::resetFiles() {
 		// Reset score
-		this->_data->files.writeFile("res/data/Score.txt", 0);
+		std::vector<int> vector;
+		for (int i = 0; i < this->_data->files.readFile("res/data/Score.txt").size(); i++) {
+			vector.push_back(0);
+		}
+
+		this->_data->files.writeFile("res/data/Score.txt", vector);
 
 		// Reset array
-		std::vector<int> vector;
+		vector.clear();
 		for (int i = 0; i < this->_data->files.readFile("res/data/Array.txt").size(); i++) {
 			vector.push_back(0);
 		}

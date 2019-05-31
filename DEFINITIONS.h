@@ -27,8 +27,8 @@ namespace game {
 // Game state options
 #define STATE_PLAYING 100
 #define STATE_PAUSED 101
-#define STATE_WON 102
-#define STATE_OVER 103
+#define STATE_RESTART 102
+#define STATE_HOME 103
 #define PAUSE_BUTTON "res/img/pause_button.png"
 #define PREV_BUTTON "res/img/prev_button.png"
 #define GAME_MUSIC "res/audio/game_music.wav"
@@ -58,3 +58,7 @@ namespace game {
 
 // Text boxes
 #define TEXT_BOX "res/img/text_box.png"
+
+// Button boxes
+#define WIN_BOX "res/img/win_box.png"
+#define LOSE_BOX "res/img/lost_box.png"

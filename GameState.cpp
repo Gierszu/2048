@@ -166,13 +166,14 @@ namespace game {
 					_grid.execute(Direction::LEFT);
 
 					sf::Clock clock;
-					for (int i = 0; i < 10; i++) {
-						_grid.animate(10);
+					for (int i = 0; i < 12; i++) {
+						clock.restart();
+						_grid.animate(12);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
 						float time = clock.getElapsedTime().asMilliseconds();
-						if (time < (100 / 10)) {
-							Sleep((100 - time) / 10);
+						if (time < (120 / 12)) {
+							Sleep((120 - time) / 12);
 						}
 					}
 
@@ -190,14 +191,14 @@ namespace game {
 					_grid.execute(Direction::RIGHT);
 
 					sf::Clock clock;
-					for (int i = 0; i < 10; i++) {
+					for (int i = 0; i < 12; i++) {
 						clock.restart();
-						_grid.animate(10);
+						_grid.animate(12);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
 						float time = clock.getElapsedTime().asMilliseconds();
-						if (time < (100 / 10)) {
-							Sleep((100 - time) / 10);
+						if (time < (120 / 12)) {
+							Sleep((120 - time) / 12);
 						}
 					}
 
@@ -215,14 +216,14 @@ namespace game {
 					_grid.execute(Direction::UP);
 
 					sf::Clock clock;
-					for (int i = 0; i < 10; i++) {
+					for (int i = 0; i < 12; i++) {
 						clock.restart();
-						_grid.animate(10);
+						_grid.animate(12);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
 						float time = clock.getElapsedTime().asMilliseconds();
-						if (time < (100 / 10)) {
-							Sleep((100 - time) / 10);
+						if (time < (120 / 12)) {
+							Sleep((120 - time) / 12);
 						}
 					}
 
@@ -240,14 +241,14 @@ namespace game {
 					_grid.execute(Direction::DOWN);
 					
 					sf::Clock clock;
-					for (int i = 0; i < 10; i++) {
+					for (int i = 0; i < 12; i++) {
 						clock.restart();
-						_grid.animate(10);
+						_grid.animate(12);
 						this->update(1.0f / 60.0f);
 						this->draw(1.0f / 60.0f);
 						float time = clock.getElapsedTime().asMilliseconds();
-						if (time < (100 / 10)) {
-							Sleep((100 - time) / 10);
+						if (time < (120 / 12)) {
+							Sleep((120 - time) / 12);
 						}
 					}
 
